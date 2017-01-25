@@ -1,0 +1,16 @@
+﻿@using AllegroMVC.Infrastructure
+@model IEnumerable<AllegroMVC.Models.FlowerType>
+
+<nav class="flower-types-vertical">
+    <ul>
+        @foreach (var flowerType in Model)
+        {
+            <li>
+                <a href="@Url.Action("List", "Store", new { flowerTypeName = flowerType.Name.ToLower() })" 
+                   style="background-image: url(@Url.FlowerTypeIconPath(flowerType.IconFileName)); ">
+                    @flowerType.Name
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

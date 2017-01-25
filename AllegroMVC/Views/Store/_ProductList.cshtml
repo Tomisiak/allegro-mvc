@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AllegroMVC.Models.Flower>
+@using AllegroMVC.Infrastructure
+
+<div id="productlist-section">
+    <ul class="ThreeColumnsPhotosList small-flower-photo-list">
+        @foreach (var flower in Model)
+        {
+            <li>
+                <article>
+                    <a class="addtocartlink" href="@Url.Action("AddToCart", "Cart", new { id = flower.FlowerId })">
+                        <img src="@Url.Content("~/Content/Images/cart.png")" alt="Dodaj do koszyka" />
+                    </a>
+
+                    @if (flower.IsBestseller)
+                    {
+                        <div class="bestsellerFlag"></div>
+                    }
+
+                    <a class="productdetailslink" href="@Url.Action("Details", "Store", new { id = flower.FlowerId })">
+                        <img class="flower-photo" src="@Url.FlowerPhotoPath(flower.ImageFileName)" />
+                        <h1>
+                            @flower.FlowerName
+                        </h1>
+                    </a>
+                </article>
+            </li>
+        }
+    </ul>
+</div>
